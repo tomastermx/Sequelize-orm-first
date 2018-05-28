@@ -1,0 +1,70 @@
+
+
+var Sequelize = require('sequelize');
+
+/////////////RECUERDA PRIMERO CREAR LA BASE DE DATOS
+var  db = new Sequelize('sequelize','root','Caifanes1+', {
+host:'localhost',
+dialect: 'mysql'
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+var User = db.define('user', {
+  username:Sequelize.STRING,
+  mail: Sequelize.STRING,
+  name: Sequelize.STRING
+
+});
+
+
+
+User.sync().then(function() {
+  return User.create({
+
+    username: 'Tomaster',
+    name: 'Tomas',
+    mail: 'tomas.palomino@gmail.com'
+  });
+
+return User;
+
+});
+
+
+
+var data = {};
+
+data.db = db;
+data.Sequelize = Sequelize;
+data.User = User;
+
+module.exports = data;
+
+
+
+
+// load models
+
+
+
+/* recuerda las comas después de STRING
+Es confuso cuando  es Sequelize ó Sequelize
+recuerda después de instalar todo con npm-install
+correr el comando:
+ npm install --save mysql // For both mysql and mariadb dialects
+
+*/
+
+//ACUERDATE DE SINQUEAR LAS TABLAS

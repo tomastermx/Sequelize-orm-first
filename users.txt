@@ -1,0 +1,46 @@
+
+
+
+var data = require('../models/db');
+
+
+  db = data.db;
+  Sequelize = data.Sequelize;
+  User = data.User;
+
+
+
+
+
+exports.index = function(req,res,next){
+
+};
+
+exports.create = function(req,res){
+res.render('form');
+
+};
+
+
+exports.docreate =  function(req,res){
+
+console.log(req.body.FullName);
+console.log(req.body.email);
+console.log(req.body.Alias);
+
+db.sync().then(function(){
+
+User.create({
+
+username:req.body.Alias,
+name: req.body.FullName,
+mail:req.body.email
+
+
+});
+
+
+})
+
+
+};
